@@ -15,33 +15,22 @@ Auto-Reserve is a Python-based web reservation automation program. It allows us 
    ![image](https://user-images.githubusercontent.com/18758041/114173065-806e5280-9971-11eb-8719-515a40b9926b.png)
 
 
-## 2. Run Python Console to see if it works well.
-<img src="https://user-images.githubusercontent.com/53033449/87906726-2dc8cf80-ca9e-11ea-8641-fc74921781cb.png" width="600"><br>
-<img src="https://user-images.githubusercontent.com/53033449/87906673-0b36b680-ca9e-11ea-8f0f-4d130d183377.png" width="600"><br>
+## 2. 응용프로그램의 Visual Studio Code.app 실행 이후 아래와 같이 python interpreter 설치
+![image](https://user-images.githubusercontent.com/18758041/114173312-f2df3280-9971-11eb-9bc3-15e3aa02b875.png)
 
-## 3. Install the Python plug-in in VSCode and select the Python you previously installed as an interpreter.
 <img src="https://user-images.githubusercontent.com/53033449/87907004-b182bc00-ca9e-11ea-8be8-89b553a1bca1.png" width="300"><br>
 <img src="https://user-images.githubusercontent.com/53033449/87907174-0c1c1800-ca9f-11ea-8d05-eb2498e16d7e.png" width="600"><br>
 
 
 <img src="https://user-images.githubusercontent.com/53033449/87907980-a0d34580-caa0-11ea-8842-211b1a51c7fb.png" width="600"><br>
 
-```
-pip install -r requirements.txt
-```
-## 7. Download WebDriver
-<img src="https://user-images.githubusercontent.com/53033449/87933763-cd9b5300-cac8-11ea-8873-80007a17770e.png" width="600">
-<img src="https://user-images.githubusercontent.com/53033449/87933850-f3285c80-cac8-11ea-94da-915a8d75a91b.png" width="600">
 
-[googlelink]: https://chromedriver.chromium.org/downloads
-[최신 버전 크롬 웹드라이버 다운][googlelink]
 
-## 8. Type your ID and password and enter the Naver reservation site you want to reserve in the URL.
-<img src="https://user-images.githubusercontent.com/53033449/87931973-ab540600-cac5-11ea-84a2-561112c7d519.png" width="550">
+## 3. 다운 및 압축 풀은 폴더 불러오기
+- File - Open - 압축 푼 폴더 선택 
+![image](https://user-images.githubusercontent.com/18758041/114173581-5a957d80-9972-11eb-9f43-65987148cc41.png)
 
-## 9. Type the path of downloaded web driver at **executable_path**.
-<img src="https://user-images.githubusercontent.com/53033449/87932165-05ed6200-cac6-11ea-94f7-0b7a6daf8769.png" width="600">
 
-## 10. Ctrl + F5
+
 
 <img src="https://user-images.githubusercontent.com/53033449/87934256-aa24d800-cac9-11ea-96aa-080d09dc7360.png" width="300">
