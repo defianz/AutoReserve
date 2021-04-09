@@ -84,6 +84,8 @@ function main(){
     checkOk
     install_requirement
     checkOk
+    chmod 777 $path/src/macOS/chromedriver
+    checkOk
     install_vscode
 }
 
