@@ -4,17 +4,21 @@ Auto-Reserve is a Python-based web reservation automation program. It allows us 
 
 # install
 
-## 1. First, download Python from the Microsoft store.
-<img src="https://user-images.githubusercontent.com/53033449/87906481-a8ddb600-ca9d-11ea-8bab-eb61ba0d8d4d.png" width="600"><br>
+## 1. 실행에 필요한 파일 설치
+     - 파이썬 3.8 , pip3, requirement(Library) , vscode
+     - 다운받은 압축파일을 풀고 나온 폴더에서, 오른쪽 버튼 -> 서비스 -> 폴더에서 새로운 터미널 열기
+    ![image](https://user-images.githubusercontent.com/18758041/114172511-b6f79d80-9970-11eb-80ea-e136351a33a8.png)
+   - 아래 명령어 입력
+     # sudo ./macOS_start.sh
+   ![image](https://user-images.githubusercontent.com/18758041/114172773-148bea00-9971-11eb-8c83-709e3ae67bac.png)
+   - 마지막 vscode가 설치 완료되면 아래와 같이 됨
+   ![image](https://user-images.githubusercontent.com/18758041/114172926-4bfa9680-9971-11eb-9ca2-dabd3e441a9c.png)
 
 ## 2. Run Python Console to see if it works well.
 <img src="https://user-images.githubusercontent.com/53033449/87906726-2dc8cf80-ca9e-11ea-8641-fc74921781cb.png" width="600"><br>
 <img src="https://user-images.githubusercontent.com/53033449/87906673-0b36b680-ca9e-11ea-8f0f-4d130d183377.png" width="600"><br>
 
-## 3. Install VSCode.
-<img src="https://user-images.githubusercontent.com/53033449/87906829-5f419b00-ca9e-11ea-8728-92ae73539475.png" width="600"><br>
-
-## 4. Install the Python plug-in in VSCode and select the Python you previously installed as an interpreter.
+## 3. Install the Python plug-in in VSCode and select the Python you previously installed as an interpreter.
 <img src="https://user-images.githubusercontent.com/53033449/87907004-b182bc00-ca9e-11ea-8be8-89b553a1bca1.png" width="300"><br>
 <img src="https://user-images.githubusercontent.com/53033449/87907174-0c1c1800-ca9f-11ea-8d05-eb2498e16d7e.png" width="600"><br>
 
