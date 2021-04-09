@@ -15,9 +15,10 @@ Auto-Reserve is a Python-based web reservation automation program. It allows us 
    ![image](https://user-images.githubusercontent.com/18758041/114173065-806e5280-9971-11eb-8719-515a40b9926b.png)
 
 
-## 2. 응용프로그램의 Visual Studio Code.app 실행 이후 아래와 같이 python interpreter 설치
+## 2. 응용프로그램의 Visual Studio Code.app 실행 이후 아래와 같이 python extension 설치
 ![image](https://user-images.githubusercontent.com/18758041/114173312-f2df3280-9971-11eb-9bc3-15e3aa02b875.png)
 
+- 맨위 python install 클릭
 <img src="https://user-images.githubusercontent.com/53033449/87907004-b182bc00-ca9e-11ea-8be8-89b553a1bca1.png" width="300"><br>
 <img src="https://user-images.githubusercontent.com/53033449/87907174-0c1c1800-ca9f-11ea-8d05-eb2498e16d7e.png" width="600"><br>
 
