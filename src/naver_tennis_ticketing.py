@@ -16,7 +16,8 @@ import os
 ID = ""
 PW = ""
 # URL 주소 ( 현재 : 양재 테니스장)
-URL = "https://booking.naver.com/booking/10/bizes/210031"
+# URL = "https://booking.naver.com/booking/10/bizes/210031" //양재
+URL = "https://booking.naver.com/booking/10/bizes/217811" //내곡
 
 # OS 버전에 따른 크롬 드라이버 설정
 cwdPath = ""

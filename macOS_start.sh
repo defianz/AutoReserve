@@ -1,6 +1,7 @@
 #!/bin/sh
 
 setUpPkg="default";
+path=$(pwd);
 
 function installPkg(){
     echo ${GREEN}"--------------- Start Install ${setUpPkg} ---------------"${NC};
@@ -67,6 +68,15 @@ function install_pip(){
     python3 get-pip.py
 }
 
+function install_vscode(){
+    setUpPkg="vscode"
+    checkCommandOk
+    unzip $path/InstallFile/macOS/VSCode-darwin.zip
+    checkCommandOk
+    mv $path/Visual\ Studio\ Code.app /Applications/Visual\ Studio\ Code.app22
+    checkCommandOk
+}
+
 function main(){
     install_python
     checkCommandOk
@@ -74,6 +84,7 @@ function main(){
     checkOk
     install_requirement
     checkOk
+    install_vscode
 }
 
 
