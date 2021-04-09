@@ -9,22 +9,33 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 import pause
 import pyperclip
+import platform
+import os
 
-# 아이디와 패스워드를 여기에 입력
+# 아이디와 패스워드를 여기에 입력 (macOS는 미입력 )
 ID = ""
 PW = ""
 # URL 주소 ( 현재 : 양재 테니스장)
 URL = "https://booking.naver.com/booking/10/bizes/210031"
+
+# OS 버전에 따른 크롬 드라이버 설정
+cwdPath = ""
+clientOS = ""
+if(platform.platform()[0:5] == "macOS"):
+    cwdPath =  os.path.dirname(os.path.realpath(__file__)) + "/macOS/chromedriver"
+    clientOS = "macOS"
+else:
+    cwdPath = os.path.dirname(os.path.realpath(__file__)) + "//window//chromedriver.exe"
+    clientOS = "Windows"
 
 # AMPM 이 0 이면 AM, 1 이면 PM
 AMPM = 0
 # TIME 시간값으로 입력 : 0,1,2,3,4,5,6,7,8,9,10,11
 # 0 일 경우 12:00
 TIME = 10
-
-
 # 예약 사이트의 예약하고자 하는 테니스코트 순서(왼쪽 상단 0부터 시작!!)
 RESER_COURT = 0
+
 
 now = datetime.now()
 options = Options()
@@ -33,11 +44,12 @@ options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
 # executable_path 부분에 브라우저 드라이버 파일 경로를 입력
 driver = webdriver.Chrome(
-    executable_path='C:/Users/iautm/Desktop/Auto-booking-master/chromedriver.exe',
-    options=options)
+    executable_path=cwdPath,
+    options=options
+    )
 wait = WebDriverWait(driver, 10)
 driver.get(URL)
-# time.sleep(5)
+time.sleep(5)
 
 # 로그인 함수
 # 아이디 창과 패스워드 입력 창을 찾아서 클릭할 수 있을때까지 기다린 다음 자동으로 입력을 합니다
@@ -213,11 +225,20 @@ def make_booking(calendar):
 
 
 def main():
-    print("[START] Program Start")
-    result = 0
+    while input() != "start":
+        print("waiting")
+        time.sleep(0.5)
 
-    print("[Login] Start to Login")
-    login()
+    print("[START] Program Start")
+    print(clientOS)
+    if clientOS == "macOS":
+        # print(driver.find_element_by_id("gnb_name1").get_attribute('innerHTML'))
+        # while driver.find_element_by_id("gnb_name1").get_attribute('innerHTML') == "":
+        #     print("waiting")
+            time.sleep(0.5)
+    else:
+        print("[Login] Start to Login")
+        login()
     print("[Login] Success to Login")
     wait_booking()
     calendar = get_calender()
