@@ -16,8 +16,8 @@ import os
 ID = ""
 PW = ""
 # URL 주소 ( 현재 : 양재 테니스장)
-# URL = "https://booking.naver.com/booking/10/bizes/210031" //양재
-URL = "https://booking.naver.com/booking/10/bizes/217811"
+URL = "https://booking.naver.com/booking/10/bizes/210031" #양재
+# URL = "https://booking.naver.com/booking/10/bizes/217811"
 #내곡
 
 # OS 버전에 따른 크롬 드라이버 설정
@@ -36,7 +36,7 @@ AMPM = 0
 # 0 일 경우 12:00
 TIME = 10
 # 예약 사이트의 예약하고자 하는 테니스코트 순서(왼쪽 상단 0부터 시작!!)
-RESER_COURT = 0
+RESER_COURT = 7
 
 
 now = datetime.now()
@@ -57,10 +57,10 @@ time.sleep(5)
 # 아이디 창과 패스워드 입력 창을 찾아서 클릭할 수 있을때까지 기다린 다음 자동으로 입력을 합니다
 
 satcnt = 0
-MAXSATCNT = 4
+MAXSATCNT = 3
 
 suncnt = 0
-MAXSUNCNT = 4
+MAXSUNCNT = 3
 
 
 def login():
@@ -152,22 +152,28 @@ def make_booking(calendar):
                     sun_date.append(item2)
                 elif class_attribute == "calendar-sun calendar-selected start-day end-day":
                     sun_date.append(item2)
+                elif class_attribute == "calendar-sun calendar-dayoff":
+                    sun_date.append(item2)
+                elif class_attribute == "calendar-sun calendar-dayoff calendar-selected start-day end-day":
+                    sun_date.append(item2)
                 else:
                     etc_date.append(item2)
+        # MAXSATCNT = len(sat_date)
+        # MAXSUNCNT = len(sun_date)
+        print(sun_date)
 
-        MAXSATCNT = len(sat_date)
-        MAXSUNCNT = len(sun_date)
+        # if satcnt == MAXSATCNT:
+        #     print("Click Date : SUNDAY of :", suncnt+1, " weeks")
+        #     sun_date[suncnt].click()
+        # else:
+        #     print("Click Date : SATURDAY of :", satcnt+1, " weeks")
+        #     sat_date[satcnt].click()
 
-        if satcnt == MAXSATCNT:
-            print("Click Date : SUNDAY of :", suncnt+1, " weeks")
-            if(suncnt == 4):
-                driver.find_element_by_css_selector(
-                    "a[ng-click='$event.preventDefault();$ctrl.isShow = false;']").click()
-            sun_date[suncnt].click()
-        else:
-            print("Click Date : SATURDAY of :", satcnt+1, " weeks")
-            sat_date[satcnt].click()
+        if(suncnt == 3):
+            driver.find_element_by_css_selector(
+            "a[ng-click='$event.preventDefault();$ctrl.isShow = false;']").click()
 
+        sun_date[suncnt].click()
         time.sleep(0.1)
         customer_selector = wait.until(
             EC.element_to_be_clickable((By.CLASS_NAME, "ly_time_booking")))
@@ -213,10 +219,13 @@ def make_booking(calendar):
               MAXSATCNT-1, " | suncnt : ", suncnt, " / MAXSUNCNT : ", MAXSUNCNT-1)
         time.sleep(0.5)
         calendar2 = wait.until(EC.element_to_be_clickable((By.ID, "calendar")))
-        if(satcnt < MAXSATCNT):
-            satcnt = satcnt + 1
-        else:
-            suncnt = suncnt + 1
+        # if(satcnt < MAXSATCNT):
+        #     satcnt = satcnt + 1
+        # else:
+        #     suncnt = suncnt + 1
+        # suncnt =1
+
+        suncnt = suncnt +1
 
         if(suncnt >= MAXSUNCNT):
             return 0
