@@ -52,7 +52,4 @@ Auto-Reserve is a Python-based web reservation automation program. It allows us 
 ![image](https://user-images.githubusercontent.com/18758041/114174862-363aa080-9974-11eb-88c3-0c6391c0361c.png)
 
 
-
-
-
-<img src="https://user-images.githubusercontent.com/53033449/87934256-aa24d800-cac9-11ea-96aa-080d09dc7360.png" width="300">
+## 9. 예약이 되면 네이버페이 패스워드 입력창이 뜸!!~!!~ 재빨리 입력~
