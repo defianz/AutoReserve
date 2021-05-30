@@ -2,6 +2,10 @@
 
 Auto-Reserve is a Python-based web reservation automation program. It allows us to automatically proceed with Naver reservation using Selenium Library and Chrome Web Driver.
 
+
+# 사전 준비
+ - 로그인 아이디에 네이버 페이 등록이 필요하며, 패스워드 입력시 결제되도록 해야합니다.
+
 # install
 
 ## 1. 실행에 필요한 파일 설치
@@ -34,7 +38,7 @@ Auto-Reserve is a Python-based web reservation automation program. It allows us 
 ![image](https://user-images.githubusercontent.com/18758041/114174546-b90f2b80-9973-11eb-8de7-7d41c7c4fc08.png)
 
 
-## 5. config - 사용자 설정 내용 확인
+## 5.naver_tennis_icketing.py 안에 사용자 설정 내용 확인 및 수정
 ![image](https://user-images.githubusercontent.com/18758041/120101246-21160d00-c180-11eb-9301-b56d818246f7.png)
 
  
@@ -51,6 +55,7 @@ Auto-Reserve is a Python-based web reservation automation program. It allows us 
 
 
 
+## 9. 네이버 페이 결제창이 뜨면 성공
 
-
+## 10. 예약 
 <img src="https://user-images.githubusercontent.com/53033449/87934256-aa24d800-cac9-11ea-96aa-080d09dc7360.png" width="300">
