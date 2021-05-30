@@ -36,8 +36,10 @@ Auto-Reserve is a Python-based web reservation automation program. It allows us 
 ![image](https://user-images.githubusercontent.com/18758041/114174546-b90f2b80-9973-11eb-8de7-7d41c7c4fc08.png)
 
 
-## 5. config 몇개 확인
-  - AMPM , TIME , RESER_COURT
+## 5. config - 사용자 설정 내용 확인
+![image](https://user-images.githubusercontent.com/18758041/120101246-21160d00-c180-11eb-9301-b56d818246f7.png)
+
+ 
 
 
 ## 6.  RUN - Run Without Debugging 으로 실행
