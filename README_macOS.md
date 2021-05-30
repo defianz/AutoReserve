@@ -25,10 +25,6 @@ Auto-Reserve is a Python-based web reservation automation program. It allows us 
 ![image](https://user-images.githubusercontent.com/18758041/114174457-9bda5d00-9973-11eb-8055-bc5bcbdeae3b.png)
 
 
-<img src="https://user-images.githubusercontent.com/53033449/87907980-a0d34580-caa0-11ea-8842-211b1a51c7fb.png" width="600"><br>
-
-
-
 ## 3. 다운 및 압축 풀은 폴더 불러오기
 - File - Open - 압축 푼 폴더 선택 
 ![image](https://user-images.githubusercontent.com/18758041/114173581-5a957d80-9972-11eb-9f43-65987148cc41.png)
