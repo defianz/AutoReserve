@@ -12,32 +12,75 @@ import pyperclip
 import platform
 import os
 
-# 아이디와 패스워드를 여기에 입력 (macOS는 미입력 )
+# 로그인 기능 이용시, loginTry = True 및 아이디와 패스워드를 여기에 입력
+# macOS는 불가 (loginTry = True 로 설정 금지)
+# 개발 및 테스트용 ( 터미널에 start 쳐서 하는게 더 정확하고 빠름)
+loginTry = False
 ID = ""
 PW = ""
+TEST = False
+
+
+############사용자 설정 내용 #############
 # URL 주소 ( 현재 : 양재 테니스장)
-# URL = "https://booking.naver.com/booking/10/bizes/210031" //양재
-URL = "https://booking.naver.com/booking/10/bizes/217811"
-#내곡
+# 1. 양재
+URL = "https://booking.naver.com/booking/10/bizes/210031"
+# 2. 내곡
+# URL = "https://booking.naver.com/booking/10/bizes/217811"
+
+# AMPM 이 0 이면 AM, 1 이면 PM
+AMPM = 0
+
+# TIME 시간값으로 입력 : 0,1,2,3,4,5,6,7,8,9,10,11
+# 0 일 경우 12:00
+TIME = 10
+# 보통 주말 예약은 최대 두시간 이므로 10 으로 설정하면 10:00 ~ 12:00 (2시간) 예약이 됩니다.
+
+# 예약 사이트의 예약하고자 하는 테니스코트 순서(왼쪽 상단 0부터 시작!!)
+RESER_COURT = 0
+
+# 내가 선택할 일자 입력 (앞에 일자 부터 입력 권장 - "YYYY-MM-DD" 형식이여야 함!)
+myReserveDate = ["2021-07-04",  # 0번째 값
+                 "2021-07-18",   # 1번째 값
+                 "2021-07-24",   # 2번째 값
+                 "2021-07-25",   # 3번째 값
+                 "2021-07-31"    # 4번째 값
+                 ]
+date_rank = [0,    # myReserverDate 0번째 값 선택
+             4,    # myReserverDate 4번째 값 선택
+             3,   # myReserverDate 3번째 값 선택
+             1,   # myReserverDate 1번째 값 선택
+             2    # myReserverDate 2번째 값 선택
+             ]
+# date_rank는 0부터 (myReserveDate 의 원소 갯수 -1) 의 값을 가져야하며,
+# myReserverDate의 원소와 쌍을 이루며 순서를 설정함
+
+# ex ) date_rank 의 첫번째 값이 0 => myReserveDate의 0번째에 값이 진행됨 (가장 먼저)
+#      => 2021-07-04 의 날짜를 가장 먼저 예약 시도함
+#      date_rank 의 두번째 값이 4 => myReserveDate의 4번째에 값이 진행됨
+#      => 2021-07-31 의 날짜로 예약 시도함 (0,1,2,3,4 이니 가장 마지막!!)
+#      date_rank 의 세번째 값이 3 => myReserveDate의 3번째 값이 진행됨
+#      => 2021-07-25의 날짜로 예약 시도함
+#          ....
+#     예약 시도하는 순서 -->  2021-07-04 -> 2021-07-31 -> 2021-07-25 -> 2021-07-18 -> 2021-07-24
+
+
+############사용자 설정 내용 완료 #############
+
+
+idx = 0
 
 # OS 버전에 따른 크롬 드라이버 설정
 cwdPath = ""
 clientOS = ""
 if(platform.platform()[0:5] == "macOS"):
-    cwdPath =  os.path.dirname(os.path.realpath(__file__)) + "/macOS/chromedriver"
+    cwdPath = os.path.dirname(os.path.realpath(
+        __file__)) + "/macOS/chromedriver"
     clientOS = "macOS"
 else:
-    cwdPath = os.path.dirname(os.path.realpath(__file__)) + "//window//chromedriver.exe"
+    cwdPath = os.path.dirname(os.path.realpath(
+        __file__)) + "//Windows//chromedriver.exe"
     clientOS = "Windows"
-
-# AMPM 이 0 이면 AM, 1 이면 PM
-AMPM = 0
-# TIME 시간값으로 입력 : 0,1,2,3,4,5,6,7,8,9,10,11
-# 0 일 경우 12:00
-TIME = 10
-# 예약 사이트의 예약하고자 하는 테니스코트 순서(왼쪽 상단 0부터 시작!!)
-RESER_COURT = 0
-
 
 now = datetime.now()
 options = Options()
@@ -48,19 +91,10 @@ options.add_experimental_option("excludeSwitches", ["enable-logging"])
 driver = webdriver.Chrome(
     executable_path=cwdPath,
     options=options
-    )
+)
 wait = WebDriverWait(driver, 10)
 driver.get(URL)
 time.sleep(5)
-
-# 로그인 함수
-# 아이디 창과 패스워드 입력 창을 찾아서 클릭할 수 있을때까지 기다린 다음 자동으로 입력을 합니다
-
-satcnt = 0
-MAXSATCNT = 4
-
-suncnt = 0
-MAXSUNCNT = 4
 
 
 def login():
@@ -130,43 +164,28 @@ def get_calender():
 
 def make_booking(calendar):
 
-    global satcnt, suncnt, MAXSATCNT, MAXSUNCNT
+    global myReserveDate, idx, date_rank
     time.sleep(0.5)
     try:
         calendar_table = calendar.find_element_by_class_name("tb_body")
         weeks = calendar_table.find_elements_by_tag_name("tr")
 
-        sat_date = []
-        sun_date = []
+        my_date = []
         etc_date = []
 
         for item in weeks:
             days = item.find_elements_by_tag_name("td")
             for item2 in days:
-                class_attribute = item2.get_attribute("class")
-                if class_attribute == "calendar-sat":
-                    sat_date.append(item2)
-                elif class_attribute == "calendar-sat calendar-selected start-day end-day":
-                    sat_date.append(item2)
-                elif class_attribute == "calendar-sun":
-                    sun_date.append(item2)
-                elif class_attribute == "calendar-sun calendar-selected start-day end-day":
-                    sun_date.append(item2)
+                class_attribute = item2.get_attribute("data-tst_cal_datetext")
+                if class_attribute in myReserveDate:
+                    my_date.append(item2)
                 else:
                     etc_date.append(item2)
 
-        MAXSATCNT = len(sat_date)
-        MAXSUNCNT = len(sun_date)
-
-        if satcnt == MAXSATCNT:
-            print("Click Date : SUNDAY of :", suncnt+1, " weeks")
-            if(suncnt == 4):
-                driver.find_element_by_css_selector(
-                    "a[ng-click='$event.preventDefault();$ctrl.isShow = false;']").click()
-            sun_date[suncnt].click()
-        else:
-            print("Click Date : SATURDAY of :", satcnt+1, " weeks")
-            sat_date[satcnt].click()
+        print("Click Date :", myReserveDate[date_rank[idx]], " ")
+        driver.find_element_by_css_selector(
+            "a[ng-click='$event.preventDefault();$ctrl.isShow = false;']").click()
+        my_date[date_rank[idx]].click()
 
         time.sleep(0.1)
         customer_selector = wait.until(
@@ -209,38 +228,35 @@ def make_booking(calendar):
         print("[BOOKING - ERROR]", e)
 
         driver.refresh()
-        print("refresh @ END Variabe - satcnt : ", satcnt, " / MAXSATCNT : ",
-              MAXSATCNT-1, " | suncnt : ", suncnt, " / MAXSUNCNT : ", MAXSUNCNT-1)
+        print("refresh @ END Variabe - data : ", myReserveDate[date_rank[idx]])
         time.sleep(0.5)
         calendar2 = wait.until(EC.element_to_be_clickable((By.ID, "calendar")))
-        if(satcnt < MAXSATCNT):
-            satcnt = satcnt + 1
-        else:
-            suncnt = suncnt + 1
-
-        if(suncnt >= MAXSUNCNT):
-            return 0
-
-        print("Refresh @ START Variabe - satcnt : ", satcnt, " / MAXSATCNT : ",
-              MAXSATCNT-1, " | suncnt : ", suncnt, " / MAXSUNCNT : ", MAXSUNCNT-1)
+        idx = idx + 1
+        if(idx >= len(date_rank)):
+            print("예약에 모두 실패했습니다. 수동으로 진행해주세요")
+            while True:
+                time.sleep(1000000)
+        print("Refresh @ START Variabe - date : ",
+              myReserveDate[date_rank[idx]])
         make_booking(calendar2)
 
 
 def main():
-    while input() != "start":
-        print("waiting")
-        time.sleep(0.5)
+    if TEST == False:
+        print("waiting for Inputing 'start' , Please Login the Reserving page")
+        while input() != "start":
+            print("waiting for Inputing 'start' , Please Login the Reserving page")
+            time.sleep(0.5)
 
     print("[START] Program Start")
     print(clientOS)
     if clientOS == "macOS":
-        # print(driver.find_element_by_id("gnb_name1").get_attribute('innerHTML'))
-        # while driver.find_element_by_id("gnb_name1").get_attribute('innerHTML') == "":
-        #     print("waiting")
-            time.sleep(0.5)
+        time.sleep(0.5)
     else:
-        print("[Login] Start to Login")
-        login()
+        if loginTry:
+            print("[Login] Start to Login")
+            login()
+
     print("[Login] Success to Login")
     wait_booking()
     calendar = get_calender()
