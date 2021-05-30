@@ -18,7 +18,7 @@ import os
 loginTry = False
 ID = ""
 PW = ""
-TEST = False
+TEST = True
 
 
 ############사용자 설정 내용 #############
@@ -40,18 +40,20 @@ TIME = 10
 RESER_COURT = 0
 
 # 내가 선택할 일자 입력 (앞에 일자 부터 입력 권장 - "YYYY-MM-DD" 형식이여야 함!)
-myReserveDate = ["2021-07-04",  # 0번째 값
-                 "2021-07-18",   # 1번째 값
-                 "2021-07-24",   # 2번째 값
-                 "2021-07-25",   # 3번째 값
-                 "2021-07-31"    # 4번째 값
-                 ]
-date_rank = [0,    # myReserverDate 0번째 값 선택
-             4,    # myReserverDate 4번째 값 선택
-             3,   # myReserverDate 3번째 값 선택
-             1,   # myReserverDate 1번째 값 선택
-             2    # myReserverDate 2번째 값 선택
-             ]
+myReserveDate = [
+    "2021-07-04",  # 0번째 값
+    "2021-07-18",   # 1번째 값
+    "2021-07-24",   # 2번째 값
+    "2021-07-25",   # 3번째 값
+    "2021-07-31"    # 4번째 값
+]
+date_rank = [
+    0,    # myReserverDate 0번째 값 선택
+    4,    # myReserverDate 4번째 값 선택
+    3,   # myReserverDate 3번째 값 선택
+    1,   # myReserverDate 1번째 값 선택
+    2    # myReserverDate 2번째 값 선택
+]
 # date_rank는 0부터 (myReserveDate 의 원소 갯수 -1) 의 값을 가져야하며,
 # myReserverDate의 원소와 쌍을 이루며 순서를 설정함
 
@@ -67,6 +69,25 @@ date_rank = [0,    # myReserverDate 0번째 값 선택
 
 ############사용자 설정 내용 완료 #############
 
+# 6월 테스트 테스트 테스트 테스트 테스트 테스트 테스트 테스트
+# 실제 할때는 반드시 TEST = False 로 바꾸고 위 '사용자 설정 내용' 에 있는 값을 바꿀것
+if TEST == True:
+    RESER_COURT = 5
+    myReserveDate = [
+        "2021-06-02",  # 0번째 값
+        "2021-06-11",   # 1번째 값
+        "2021-06-13",   # 2번째 값
+        "2021-06-22",   # 3번째 값
+        "2021-06-29"    # 4번째 값
+    ]
+    date_rank = [
+        4,    # myReserverDate 4번째 값 선택
+        1,    # myReserverDate 1번째 값 선택
+        3,   # myReserverDate 3번째 값 선택
+        2,   # myReserverDate 2번째 값 선택
+        0   # myReserverDate 0번째 값 선택
+    ]
+# 6월 테스트 테스트 테스트 테스트 테스트 테스트 테스트 테스트
 
 idx = 0
 
@@ -242,11 +263,10 @@ def make_booking(calendar):
 
 
 def main():
-    if TEST == False:
+    print("waiting for Inputing 'start' , Please Login the Reserving page")
+    while input() != "start":
         print("waiting for Inputing 'start' , Please Login the Reserving page")
-        while input() != "start":
-            print("waiting for Inputing 'start' , Please Login the Reserving page")
-            time.sleep(0.5)
+        time.sleep(0.5)
 
     print("[START] Program Start")
     print(clientOS)
