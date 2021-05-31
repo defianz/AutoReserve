@@ -34,19 +34,29 @@ Auto-Reserve is a Python-based web reservation automation program. It allows us 
 ```
 pip install -r requirements.txt
 ```
-## 7. Download WebDriver
-<img src="https://user-images.githubusercontent.com/53033449/87933763-cd9b5300-cac8-11ea-8873-80007a17770e.png" width="600">
-<img src="https://user-images.githubusercontent.com/53033449/87933850-f3285c80-cac8-11ea-94da-915a8d75a91b.png" width="600">
 
-[googlelink]: https://chromedriver.chromium.org/downloads
-[최신 버전 크롬 웹드라이버 다운][googlelink]
+## 7. src 안에 있는 naver_tennis_icketing.py 더블클릭
+![image](https://user-images.githubusercontent.com/18758041/114174546-b90f2b80-9973-11eb-8de7-7d41c7c4fc08.png)
 
-## 8. Type your ID and password and enter the Naver reservation site you want to reserve in the URL.
-<img src="https://user-images.githubusercontent.com/53033449/87931973-ab540600-cac5-11ea-84a2-561112c7d519.png" width="550">
 
-## 9. Type the path of downloaded web driver at **executable_path**.
-<img src="https://user-images.githubusercontent.com/53033449/87932165-05ed6200-cac6-11ea-94f7-0b7a6daf8769.png" width="600">
+## 8. naver_tennis_icketing.py 안에 사용자 설정 내용 확인 및 수정
+![image](https://user-images.githubusercontent.com/18758041/120101246-21160d00-c180-11eb-9301-b56d818246f7.png)
 
-## 10. Ctrl + F5
+ 
 
+
+## 9.  RUN - Run Without Debugging 으로 실행
+![image](https://user-images.githubusercontent.com/18758041/114174649-de039e80-9973-11eb-9b5e-e4142195a45a.png)
+
+## 10. 실행된 인터넷 창에 로그인을 수동으로 함
+![image](https://user-images.githubusercontent.com/18758041/114174690-ecea5100-9973-11eb-8303-92685733e284.png)
+
+## 11. 예약 시간 될 때 start 입력 하고 엔터!!!!
+![image](https://user-images.githubusercontent.com/18758041/114174862-363aa080-9974-11eb-88c3-0c6391c0361c.png)
+
+
+
+## 12. 네이버 페이 결제창이 뜨면 성공
+
+## 13. 예약 
 <img src="https://user-images.githubusercontent.com/53033449/87934256-aa24d800-cac9-11ea-96aa-080d09dc7360.png" width="300">
