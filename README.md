@@ -12,6 +12,9 @@ Auto-Reserve is a Python-based web reservation automation program. It allows us 
 <img src="https://user-images.githubusercontent.com/53033449/87906673-0b36b680-ca9e-11ea-8f0f-4d130d183377.png" width="600"><br>
 
 ## 3. Install VSCode.
+```
+https://code.visualstudio.com/
+```
 <img src="https://user-images.githubusercontent.com/53033449/87906829-5f419b00-ca9e-11ea-8728-92ae73539475.png" width="600"><br>
 
 ## 4. Install the Python plug-in in VSCode and select the Python you previously installed as an interpreter.
