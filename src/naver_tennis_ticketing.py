@@ -192,7 +192,6 @@ def make_booking(calendar):
         weeks = calendar_table.find_elements_by_tag_name("tr")
 
         my_date = []
-        sun_date = []
         etc_date = []
 
         for item in weeks:
@@ -201,21 +200,14 @@ def make_booking(calendar):
                 class_attribute = item2.get_attribute("data-tst_cal_datetext")
                 if class_attribute in myReserveDate:
                     my_date.append(item2)
-                elif class_attribute == "calendar-sun calendar-dayoff":
-                    sun_date.append(item2)
-                elif class_attribute == "calendar-sun calendar-dayoff calendar-selected start-day end-day":
-                    sun_date.append(item2)
                 else:
                     etc_date.append(item2)
-        # MAXSATCNT = len(sat_date)
-        # MAXSUNCNT = len(sun_date)
 
         print("Click Date :", myReserveDate[date_rank[idx]], " ")
         driver.find_element_by_css_selector(
             "a[ng-click='$event.preventDefault();$ctrl.isShow = false;']").click()
         my_date[date_rank[idx]].click()
 
-        # sun_date[suncnt].click()
         time.sleep(0.1)
         customer_selector = wait.until(
             EC.element_to_be_clickable((By.CLASS_NAME, "ly_time_booking")))
