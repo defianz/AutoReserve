@@ -24,9 +24,9 @@ TEST = False
 ############사용자 설정 내용 #############
 # URL 주소 ( 현재 : 양재 테니스장)
 # 1. 양재
-# URL = "https://booking.naver.com/booking/10/bizes/210031"
+URL = "https://booking.naver.com/booking/10/bizes/210031"
 # 2. 내곡
-URL = "https://booking.naver.com/booking/10/bizes/217811"
+# URL = "https://booking.naver.com/booking/10/bizes/217811"
 
 # AMPM 이 0 이면 AM, 1 이면 PM
 AMPM = 0
@@ -41,18 +41,16 @@ RESER_COURT = 0
 
 # 내가 선택할 일자 입력 (앞에 일자 부터 입력 권장 - "YYYY-MM-DD" 형식이여야 함!)
 myReserveDate = [
-    "2021-10-12",   # 0번째 값
-    "2021-10-13",   # 1번째 값
-    "2021-10-14",   # 2번째 값
-    "2021-10-15",   # 3번째 값
-    "2021-10-16"    # 4번째 값
+    "2021-11-07",  # 0번째 값
+    "2021-11-14",  # 1번째 값
+    "2021-11-21",  # 2번째 값
+    "2021-11-28",  # 3번째 값
 ]
 date_rank = [
-    0,    # myReserverDate 0번째 값 선택
-    1,    # myReserverDate 4번째 값 선택
-    2,   # myReserverDate 3번째 값 선택
-    3,   # myReserverDate 1번째 값 선택
-    4    # myReserverDate 2번째 값 선택
+    0,  # myReserverDate 0번째 값 선택
+    1,  # myReserverDate 4번째 값 선택
+    2,  # myReserverDate 3번째 값 선택
+    3,  # myReserverDate 1번째 값 선택
 ]
 # date_rank는 0부터 (myReserveDate 의 원소 갯수 -1) 의 값을 가져야하며,
 # myReserverDate의 원소와 쌍을 이루며 순서를 설정함
@@ -74,18 +72,18 @@ date_rank = [
 if TEST == True:
     RESER_COURT = 5
     myReserveDate = [
-        "2021-06-02",  # 0번째 값
-        "2021-06-11",   # 1번째 값
-        "2021-06-13",   # 2번째 값
-        "2021-06-22",   # 3번째 값
-        "2021-06-29"    # 4번째 값
+        "2021-11-07",  # 0번째 값
+        "2021-11-14",  # 1번째 값
+        "2021-11-21",  # 2번째 값
+        "2021-11-28",  # 3번째 값
+        "2021-11-13",  # 4번째 값
     ]
     date_rank = [
-        4,    # myReserverDate 4번째 값 선택
-        1,    # myReserverDate 1번째 값 선택
-        3,   # myReserverDate 3번째 값 선택
-        2,   # myReserverDate 2번째 값 선택
-        0   # myReserverDate 0번째 값 선택
+        4,  # myReserverDate 4번째 값 선택
+        1,  # myReserverDate 1번째 값 선택
+        3,  # myReserverDate 3번째 값 선택
+        2,  # myReserverDate 2번째 값 선택
+        0,  # myReserverDate 0번째 값 선택
     ]
 # 6월 테스트 테스트 테스트 테스트 테스트 테스트 테스트 테스트
 
@@ -94,13 +92,13 @@ idx = 0
 # OS 버전에 따른 크롬 드라이버 설정
 cwdPath = ""
 clientOS = ""
-if(platform.platform()[0:5] == "macOS"):
-    cwdPath = os.path.dirname(os.path.realpath(
-        __file__)) + "/macOS/chromedriver"
+if platform.platform()[0:5] == "macOS":
+    cwdPath = os.path.dirname(os.path.realpath(__file__)) + "/macOS/chromedriver"
     clientOS = "macOS"
 else:
-    cwdPath = os.path.dirname(os.path.realpath(
-        __file__)) + "//Windows//chromedriver.exe"
+    cwdPath = (
+        os.path.dirname(os.path.realpath(__file__)) + "//Windows//chromedriver.exe"
+    )
     clientOS = "Windows"
 
 now = datetime.now()
@@ -109,10 +107,7 @@ options.headless = False
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
 # executable_path 부분에 브라우저 드라이버 파일 경로를 입력
-driver = webdriver.Chrome(
-    executable_path=cwdPath,
-    options=options
-)
+driver = webdriver.Chrome(executable_path=cwdPath, options=options)
 wait = WebDriverWait(driver, 10)
 driver.get(URL)
 time.sleep(5)
@@ -121,23 +116,25 @@ time.sleep(5)
 def login():
 
     loginBtn = wait.until(
-        EC.element_to_be_clickable((By.CLASS_NAME, "gnb_btn_login"))).click()
+        EC.element_to_be_clickable((By.CLASS_NAME, "gnb_btn_login"))
+    ).click()
 
     id_box = wait.until(EC.element_to_be_clickable((By.ID, "id")))
     pw_box = driver.find_element_by_id("pw")
 
     id_box.click()
     pyperclip.copy(ID)
-    ActionChains(driver).key_down(Keys.CONTROL).send_keys('v').key_up(
-        Keys.CONTROL).perform()
+    ActionChains(driver).key_down(Keys.CONTROL).send_keys("v").key_up(
+        Keys.CONTROL
+    ).perform()
 
     pw_box.click()
     pyperclip.copy(PW)
-    ActionChains(driver).key_down(Keys.CONTROL).send_keys('v').key_up(
-        Keys.CONTROL).perform()
+    ActionChains(driver).key_down(Keys.CONTROL).send_keys("v").key_up(
+        Keys.CONTROL
+    ).perform()
 
-    login = wait.until(EC.element_to_be_clickable(
-        (By.ID, "log.login"))).click()
+    login = wait.until(EC.element_to_be_clickable((By.ID, "log.login"))).click()
 
     time.sleep(0.5)
 
@@ -152,9 +149,15 @@ def wait_booking():
             print("try")
             more_info = wait.until(
                 EC.element_to_be_clickable(
-                    (By.CSS_SELECTOR, 'span[ng-bind-html="bizItemInfo.name | newlines"]')))
+                    (
+                        By.CSS_SELECTOR,
+                        'span[ng-bind-html="bizItemInfo.name | newlines"]',
+                    )
+                )
+            )
             booking_btn = driver.find_elements_by_css_selector(
-                'span[ng-bind-html="bizItemInfo.name | newlines"]')
+                'span[ng-bind-html="bizItemInfo.name | newlines"]'
+            )
         except:
             driver.refresh()
             print("REFRESH")
@@ -170,12 +173,15 @@ def get_calender():
     calendar = wait.until(EC.element_to_be_clickable((By.ID, "calendar")))
 
     month = calendar.find_element_by_css_selector(
-        'span[ng-bind="$ctrl.baseDate.get(\'month\') + 1"]')
+        "span[ng-bind=\"$ctrl.baseDate.get('month') + 1\"]"
+    )
 
     nobth_sel_btn_R = calendar.find_element_by_css_selector(
-        'a[ng-click="$ctrl.nextMonth()"]')
+        'a[ng-click="$ctrl.nextMonth()"]'
+    )
     nobth_sel_btn_L = calendar.find_element_by_css_selector(
-        'a[ng-click="$ctrl.prevMonth()"]')
+        'a[ng-click="$ctrl.prevMonth()"]'
+    )
 
     if month.text == str(now.month):
         nobth_sel_btn_R.click()
@@ -205,33 +211,42 @@ def make_booking(calendar):
 
         print("Click Date :", myReserveDate[date_rank[idx]], " ")
         driver.find_element_by_css_selector(
-            "a[ng-click='$event.preventDefault();$ctrl.isShow = false;']").click()
+            "a[ng-click='$event.preventDefault();$ctrl.isShow = false;']"
+        ).click()
         my_date[date_rank[idx]].click()
 
         time.sleep(0.1)
         customer_selector = wait.until(
-            EC.element_to_be_clickable((By.CLASS_NAME, "ly_time_booking")))
+            EC.element_to_be_clickable((By.CLASS_NAME, "ly_time_booking"))
+        )
         time_select_am = customer_selector.find_element_by_css_selector(
             'div[class="am"]'
-        ).find_elements_by_css_selector('span[ng-bind="$ctrl.getStartTime(timeSchedule)"]')
+        ).find_elements_by_css_selector(
+            'span[ng-bind="$ctrl.getStartTime(timeSchedule)"]'
+        )
         time_select_pm = customer_selector.find_element_by_css_selector(
             'div[class="pm"]'
-        ).find_elements_by_css_selector('span[ng-bind="$ctrl.getStartTime(timeSchedule)"]')
+        ).find_elements_by_css_selector(
+            'span[ng-bind="$ctrl.getStartTime(timeSchedule)"]'
+        )
 
         time_select = [time_select_am, time_select_pm]
 
         print("Click TIME : AMPM : ", AMPM, " TIME : ", TIME)
         time_select[AMPM][TIME].click()
-        time_select[AMPM][TIME+1].click()
+        time_select[AMPM][TIME + 1].click()
 
         select_time_btn = driver.find_element_by_css_selector(
-            "button[ng-click='$event.preventDefault(); $ctrl.close()']").click()
+            "button[ng-click='$event.preventDefault(); $ctrl.close()']"
+        ).click()
 
         next_step_btn = driver.find_element_by_css_selector(
-            "button[ng-click='$ctrl.nextStep($event)']").click()
+            "button[ng-click='$ctrl.nextStep($event)']"
+        ).click()
 
         gogo_payment_btn = driver.find_element_by_css_selector(
-            "span[ng-bind='$ctrl.getSubmitButtonTitle()']").click()
+            "span[ng-bind='$ctrl.getSubmitButtonTitle()']"
+        ).click()
 
         time.sleep(3)
         agree_btn = driver.find_element_by_xpath(
@@ -239,7 +254,8 @@ def make_booking(calendar):
         ).click()
 
         do_payment_btn = driver.find_element_by_css_selector(
-            'button[class="btn_payment _click(nmp.front.order.order_sheet.account()) _stopDefault _doPayButton"]').click()
+            'button[class="btn_payment _click(nmp.front.order.order_sheet.account()) _stopDefault _doPayButton"]'
+        ).click()
 
         print("[Booking] Success to Booking, Please try to do payment!")
         number = 1
@@ -253,12 +269,11 @@ def make_booking(calendar):
         time.sleep(0.5)
         calendar2 = wait.until(EC.element_to_be_clickable((By.ID, "calendar")))
         idx = idx + 1
-        if(idx >= len(date_rank)):
+        if idx >= len(date_rank):
             print("예약에 모두 실패했습니다. 수동으로 진행해주세요")
             while True:
                 time.sleep(1000000)
-        print("Refresh @ START Variabe - date : ",
-              myReserveDate[date_rank[idx]])
+        print("Refresh @ START Variabe - date : ", myReserveDate[date_rank[idx]])
         make_booking(calendar2)
 
 
