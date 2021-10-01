@@ -37,20 +37,22 @@ TIME = 10
 # 보통 주말 예약은 최대 두시간 이므로 10 으로 설정하면 10:00 ~ 12:00 (2시간) 예약이 됩니다.
 
 # 예약 사이트의 예약하고자 하는 테니스코트 순서(왼쪽 상단 0부터 시작!!)
-RESER_COURT = 0
+RESER_COURT = 7
 
 # 내가 선택할 일자 입력 (앞에 일자 부터 입력 권장 - "YYYY-MM-DD" 형식이여야 함!)
 myReserveDate = [
-    "2021-11-07",  # 0번째 값
-    "2021-11-14",  # 1번째 값
+    "2021-11-21",  # 0번째 값
+    "2021-11-21",  # 1번째 값
     "2021-11-21",  # 2번째 값
-    "2021-11-28",  # 3번째 값
+    "2021-11-21",  # 3번째 값
+     "2021-11-21",  # 3번째 값
 ]
 date_rank = [
     0,  # myReserverDate 0번째 값 선택
-    1,  # myReserverDate 4번째 값 선택
-    2,  # myReserverDate 3번째 값 선택
-    3,  # myReserverDate 1번째 값 선택
+    0,  # myReserverDate 4번째 값 선택
+    0,  # myReserverDate 3번째 값 선택
+    0,  # myReserverDate 1번째 값 선택
+    0,  # myReserverDate 1번째 값 선택
 ]
 # date_rank는 0부터 (myReserveDate 의 원소 갯수 -1) 의 값을 가져야하며,
 # myReserverDate의 원소와 쌍을 이루며 순서를 설정함
@@ -268,7 +270,7 @@ def make_booking(calendar):
         print("refresh @ END Variabe - data : ", myReserveDate[date_rank[idx]])
         time.sleep(0.5)
         calendar2 = wait.until(EC.element_to_be_clickable((By.ID, "calendar")))
-        idx = idx + 1
+        idx = idx
         if idx >= len(date_rank):
             print("예약에 모두 실패했습니다. 수동으로 진행해주세요")
             while True:
